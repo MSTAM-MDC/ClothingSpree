@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FAF0E6"
+    tools:context="edu.stamler.clothingspree.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="346dp"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/shoplogof"
+        android:contentDescription="Clothing Logo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Clothing Spree!"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="#8B4513"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discover Your Style, Embrace Your Confidence"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clothing Spree is your one-stop destination for discovering latest trends and styles. Browse through our collection of fashion items, from elegant dresses to cozy coats. Tap on any item to see detailed descriptions and find out more on each unique piece. Start your fashion journey with us today!"
+        android:textSize="16sp"
+        android:textColor="#8B4513"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#8B4513"
+        android:text="Start" />
+</LinearLayout>
