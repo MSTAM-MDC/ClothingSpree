@@ -5,12 +5,18 @@ package edu.stamler.clothingspree;
  */
 
 // Import libraries
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 // Class definition header
 public class DetailActivity extends AppCompatActivity {
@@ -21,6 +27,36 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // loads the activity layout XML to display on the app
         setContentView(R.layout.activity_detail);
+
+        // loads the toolbar by its ID
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        // sets the action bar
+        setSupportActionBar(toolbar);
+
+        // Find the BottomNavigationView by ID
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        // Set an item selected listener for the BottomNavigationView
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // Handle navigation item clicks
+                int itemId = item.getItemId();
+                if (itemId == R.id.navigation_home) {
+                    // Stay on MainActivity
+                    startActivity(new Intent(DetailActivity.this, MainActivity.class));
+                    return true;
+                } else if (itemId == R.id.navigation_list) {
+                    // Start ListActivity
+                    startActivity(new Intent(DetailActivity.this, ListActivity.class));
+                    return true;
+                } else if (itemId == R.id.navigation_help) {
+                    // Start HelpActivity
+                    startActivity(new Intent(DetailActivity.this, HelpActivity.class));
+                    return true;
+                }
+                return false;
+            }
+        });
 
         // find the views for the drawable, name, content description, and button to go back to the list view
         ImageView imageView = findViewById(R.id.detail_image);
@@ -47,6 +83,33 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        // Inflate toolbar menu
+        getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Handle toolbar menu item clicks
+        int itemId = item.getItemId();
+        if (itemId == R.id.navigation_home) {
+            // Stay on MainActivity
+            startActivity(new Intent(DetailActivity.this, MainActivity.class));
+            return true;
+        } else if (itemId == R.id.navigation_list) {
+            // Start ListActivity
+            startActivity(new Intent(DetailActivity.this, ListActivity.class));
+            return true;
+        } else if (itemId == R.id.navigation_help) {
+            // Start HelpActivity
+            startActivity(new Intent(DetailActivity.this, HelpActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 } // end of DetailActivity class
 
 

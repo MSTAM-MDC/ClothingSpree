@@ -9,13 +9,26 @@
     android:background="#FAF0E6"
     android:padding="16dp">
 
-
-    <ImageView
-        android:id="@+id/detail_image"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:contentDescription="@string/clothing_image"
-        android:scaleType="centerCrop"/>
+        android:layout_height="wrap_content"
+        android:background="#FAF0E6"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:title="Detailed View"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:contentDescription="@string/clothing_image"
+            android:scaleType="centerCrop"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/detail_name"
@@ -41,5 +54,15 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8B4513"
         android:text="Back" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="#FAF0E6"
+        app:menu="@menu/bottom_nav_menu" />
+
 
 </LinearLayout>

@@ -6,12 +6,21 @@ package edu.stamler.clothingspree;
 
 // Import libraries
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.content.Intent;
 import android.widget.AdapterView;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.widget.ListView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 
 // Class definition header
@@ -23,6 +32,35 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // loads the activity layout XML to display on the app
         setContentView(R.layout.activity_list);
+
+        // loads the toolbar by its ID
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        // sets the action bar
+        setSupportActionBar(toolbar);
+
+        // Find the BottomNavigationView by ID
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        // Set an item selected listener for the BottomNavigationView
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // Handle navigation item clicks
+                int itemId = item.getItemId();
+                if (itemId == R.id.navigation_home) {
+                    // Start on MainActivity
+                    startActivity(new Intent(ListActivity.this, MainActivity.class));
+                    return true;
+                } else if (itemId == R.id.navigation_list) {
+                    // Stay on ListActivity
+                    return true;
+                } else if (itemId == R.id.navigation_help) {
+                    // Start HelpActivity
+                    startActivity(new Intent(ListActivity.this, HelpActivity.class));
+                    return true;
+                }
+                return false;
+            }
+        });
 
         // set variable to find the clothing list view
         ListView clothingListView = findViewById(R.id.clothing_list);
@@ -71,4 +109,30 @@ public class ListActivity extends AppCompatActivity {
             }
         });
     }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        // Inflate toolbar menu
+        getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Handle toolbar menu item clicks
+        int itemId = item.getItemId();
+        if (itemId == R.id.navigation_home) {
+            // Start on MainActivity
+            startActivity(new Intent(ListActivity.this, MainActivity.class));
+            return true;
+        } else if (itemId == R.id.navigation_list) {
+            // Stay on ListActivity
+            return true;
+        } else if (itemId == R.id.navigation_help) {
+            // Start HelpActivity
+            startActivity(new Intent(ListActivity.this, HelpActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 } // end of ListActivity class

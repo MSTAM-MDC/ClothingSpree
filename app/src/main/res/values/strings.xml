@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Clothing Spree</string>
     <string name="clothing_image">Clothing Image</string>
+    <string name="bottom_home">Home</string>
+    <string name="bottom_list">List</string>
+    <string name="bottom_help">Help</string>
+    <string name="help_instructions">Instructions:</string>
+    <string name="instructions_text">Click on start to view the list of items and click on the item to view the detailed description of the item selected. </string>
+    <string name="app_description">Clothing Spree is your one-stop destination for discovering latest trends and styles. Browse through our collection of fashion items, from elegant dresses to cozy coats. Tap on any item to see detailed descriptions and find out more on each unique piece. Start your fashion journey with us today!</string>
+    <string name="slogan">Discover Your Style, Embrace Your Confidence</string>
+    <string name="logo">Clothing Logo</string>
+    <string name="introduction">Welcome to Clothing Spree!</string>
+    <string name="start_button">Start</string>
+    <string name="list_title">List Activity</string>
 </resources>

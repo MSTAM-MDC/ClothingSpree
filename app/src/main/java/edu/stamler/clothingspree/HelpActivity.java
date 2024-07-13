@@ -1,30 +1,32 @@
 package edu.stamler.clothingspree;
-// Author:  Michael Stamler
-// Date:    6/2/2024
-// Purpose: Create an application that contains a main activity, list of items, and item list.
 
-// Import libraries
+/*
+    Author: Michael Stamler
+    Date:   07/11/2024
+ */
+
+// import libraries
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.content.Intent;
-import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-// Class definition header
-public class MainActivity extends AppCompatActivity {
+// class definition header
+public class HelpActivity extends AppCompatActivity {
 
     @Override // call back method
     protected void onCreate(Bundle savedInstanceState) {
         // call the parent onCreate method
         super.onCreate(savedInstanceState);
-        // loads the activity layout XML to display on the app
-        setContentView(R.layout.activity_main);
+
+        // loads the activity_help layout XML to display on the app
+        setContentView(R.layout.activity_help);
 
         // loads the toolbar by its ID
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -40,36 +42,23 @@ public class MainActivity extends AppCompatActivity {
                 // Handle navigation item clicks
                 int itemId = item.getItemId();
                 if (itemId == R.id.navigation_home) {
-                    // Stay on MainActivity
+                    // Start on MainActivity
+                    startActivity(new Intent(HelpActivity.this, MainActivity.class));
                     return true;
                 } else if (itemId == R.id.navigation_list) {
-                    // Start ListActivity
-                    startActivity(new Intent(MainActivity.this, ListActivity.class));
+                    // Start on ListActivity
+                    startActivity(new Intent(HelpActivity.this, ListActivity.class));
                     return true;
                 } else if (itemId == R.id.navigation_help) {
-                    // Start HelpActivity
-                    startActivity(new Intent(MainActivity.this, HelpActivity.class));
+                    // Stay on HelpActivity
                     return true;
                 }
                 return false;
             }
         });
 
-        // set variable to find the start button
-        Button startButton = findViewById(R.id.start_button);
 
-        // set an onClickListener on the start button for when a user clicks on the start button
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // create an intent during onClick to start the ListActivity java class
-                Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                // start ListActivity java class
-                startActivity(intent);
-            }
-        });
-    }
-
+    } // end onCreate
 
     public boolean onCreateOptionsMenu(Menu menu){
         // Inflate toolbar menu
@@ -82,20 +71,14 @@ public class MainActivity extends AppCompatActivity {
         // Handle toolbar menu item clicks
         int itemId = item.getItemId();
         if (itemId == R.id.navigation_home) {
-            // Stay on MainActivity
+            // Start on MainActivity
+            startActivity(new Intent(HelpActivity.this, MainActivity.class));
             return true;
         } else if (itemId == R.id.navigation_list) {
-            // Start List Activity
-            startActivity(new Intent(MainActivity.this, ListActivity.class));
-            return true;
-        } else if (itemId == R.id.navigation_help) {
-            // Start HelpActivity
-            startActivity(new Intent(MainActivity.this, HelpActivity.class));
-            return true;
+            // Start on ListActivity
+            startActivity(new Intent(HelpActivity.this, ListActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
 
-
-
-} // end of MainActivity class
+} // end class

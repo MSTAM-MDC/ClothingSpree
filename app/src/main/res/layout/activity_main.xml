@@ -10,28 +10,43 @@
     android:background="#FAF0E6"
     tools:context="edu.stamler.clothingspree.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="346dp"
-        android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/shoplogof"
-        android:contentDescription="Clothing Logo"/>
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.ClothingSpree" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/logo"
+            app:srcCompat="@drawable/shoplogof"
+            android:layout_marginBottom="20dp"/>
+
+    </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to Clothing Spree!"
-        android:textStyle="bold"
-        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:text="@string/introduction"
         android:textColor="#8B4513"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp" />
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Discover Your Style, Embrace Your Confidence"
+        android:text="@string/slogan"
         android:textSize="18sp"
         android:textColor="#000000"
         android:gravity="center"
@@ -41,13 +56,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clothing Spree is your one-stop destination for discovering latest trends and styles. Browse through our collection of fashion items, from elegant dresses to cozy coats. Tap on any item to see detailed descriptions and find out more on each unique piece. Start your fashion journey with us today!"
-        android:textSize="16sp"
-        android:textColor="#8B4513"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:lineSpacingExtra="4dp"
         android:padding="10dp"
-        android:layout_marginBottom="20dp" />
+        android:text="@string/app_description"
+        android:textColor="#8B4513"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/start_button"
@@ -55,5 +70,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8B4513"
-        android:text="Start" />
+        android:text="@string/start_button"
+        android:layout_marginBottom="20dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="#FAF0E6"
+        app:menu="@menu/bottom_nav_menu" />
 </LinearLayout>
