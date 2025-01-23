@@ -9,9 +9,14 @@ import android.app.Activity;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 // Class definition header
@@ -45,5 +50,4 @@ public class ClothingItemAdapter extends ArrayAdapter<ClothingItem> {
         // return the completed list item view
         return listItemView;
     }
-
 } // end of ClothingItemAdapter class

@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,12 +23,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 // Class definition header
 public class DetailActivity extends AppCompatActivity {
 
+    private SoundEffects mSoundEffects;             // Manages sound effects
+
     @Override // call back method
     protected void onCreate(Bundle savedInstanceState) {
         // call the parent onCreate method
         super.onCreate(savedInstanceState);
         // loads the activity layout XML to display on the app
         setContentView(R.layout.activity_detail);
+
+        // initialize sound effects
+        mSoundEffects = SoundEffects.getInstance(getApplicationContext());
 
         // loads the toolbar by its ID
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -41,6 +48,10 @@ public class DetailActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 // Handle navigation item clicks
                 int itemId = item.getItemId();
+
+                // Play a sound effect
+                mSoundEffects.playToneNavigation();
+
                 if (itemId == R.id.navigation_home) {
                     // Stay on MainActivity
                     startActivity(new Intent(DetailActivity.this, MainActivity.class));
@@ -63,6 +74,12 @@ public class DetailActivity extends AppCompatActivity {
         TextView nameTextView = findViewById(R.id.detail_name);
         TextView descriptionTextView = findViewById(R.id.detail_description);
         Button backToListButton = findViewById(R.id.back_to_list_button);
+
+        // Apply the animation to the drawable image, name, and content description
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.detail_animation);
+        imageView.startAnimation(animation);
+        nameTextView.startAnimation(animation);
+        descriptionTextView.startAnimation(animation);
 
         // get the data passed from ListActivity
         int imageResource = getIntent().getIntExtra("imageResource", 0);

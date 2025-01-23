@@ -12,19 +12,18 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.AdapterView;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.widget.ListView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.ArrayList;
+import java.util.List;
 
 // Class definition header
 public class ListActivity extends AppCompatActivity {
+
+    private SoundEffects mSoundEffects;             // Manages sound effects
 
     @Override // call back method
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +31,15 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // loads the activity layout XML to display on the app
         setContentView(R.layout.activity_list);
+
+        // initialize sound effects
+        mSoundEffects = SoundEffects.getInstance(getApplicationContext());
+
+        // Initialize ManageClothing to get access to the clothing items
+        ManageClothing manageClothing = ManageClothing.getInstance(this);
+
+        // Retrieve clothing items from the database using ManageClothing
+        List<ClothingItem> clothingItems = manageClothing.getAllClothingItems();
 
         // loads the toolbar by its ID
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -46,6 +54,10 @@ public class ListActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 // Handle navigation item clicks
                 int itemId = item.getItemId();
+
+                // Play a sound effect
+                mSoundEffects.playToneNavigation();
+
                 if (itemId == R.id.navigation_home) {
                     // Start on MainActivity
                     startActivity(new Intent(ListActivity.this, MainActivity.class));
@@ -69,15 +81,15 @@ public class ListActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.back_button);
 
         // create a list of clothing items which is put in an array list with the drawable, name, and content description
-        ArrayList<ClothingItem> clothingItems = new ArrayList<>();
-        clothingItems.add(new ClothingItem(R.drawable.lacedress, "Lace Maxi Dress", "Button-embellished leather-trimmed lace maxi dress. It's belted at the waist and has a flowing maxi-length skirt."));
-        clothingItems.add(new ClothingItem(R.drawable.silkdress, "Silk Maxi Dress", "Open-back asymmetric silk crepe de chine maxi dress. This maxi dress turns to reveal a skin-baring open back."));
-        clothingItems.add(new ClothingItem(R.drawable.silktop, "Silk Sequined Top", "Silk and ponte-trimmed sequined stretch-jersey top. This top is made from sequined stretch-jersey that's paneled with stretch-ponte across the collar - the supple, scuba-like textile creates a comfortable glove-like fit."));
-        clothingItems.add(new ClothingItem(R.drawable.velvetblazer, "Velvet Blazer", "Tailored from cotton-velvet, the blazer is embellished with gold-tone 'GG' hardware at the pockets and has sharp peak lapels."));
-        clothingItems.add(new ClothingItem(R.drawable.woolcoat, "Wool and Silk-blend Coat", "Reversible wool and silk-blend coat. This coat can be worn on the solid or logo patterned side."));
+        //ArrayList<ClothingItem> clothingItems = new ArrayList<>();
+        //clothingItems.add(new ClothingItem(R.drawable.lacedress, "Lace Maxi Dress", "Button-embellished leather-trimmed lace maxi dress. It's belted at the waist and has a flowing maxi-length skirt."));
+        //clothingItems.add(new ClothingItem(R.drawable.silkdress, "Silk Maxi Dress", "Open-back asymmetric silk crepe de chine maxi dress. This maxi dress turns to reveal a skin-baring open back."));
+        //clothingItems.add(new ClothingItem(R.drawable.silktop, "Silk Sequined Top", "Silk and ponte-trimmed sequined stretch-jersey top. This top is made from sequined stretch-jersey that's paneled with stretch-ponte across the collar - the supple, scuba-like textile creates a comfortable glove-like fit."));
+        //clothingItems.add(new ClothingItem(R.drawable.velvetblazer, "Velvet Blazer", "Tailored from cotton-velvet, the blazer is embellished with gold-tone 'GG' hardware at the pockets and has sharp peak lapels."));
+        //clothingItems.add(new ClothingItem(R.drawable.woolcoat, "Wool and Silk-blend Coat", "Reversible wool and silk-blend coat. This coat can be worn on the solid or logo patterned side."));
 
         // create an adapter to display the clothing items in the ListView
-        ClothingItemAdapter adapter = new ClothingItemAdapter(this, clothingItems);
+        ClothingItemAdapter adapter = new ClothingItemAdapter(this, new ArrayList<>(clothingItems));
         clothingListView.setAdapter(adapter);
 
         // set an item click listener on the ListView for when a user clicks
